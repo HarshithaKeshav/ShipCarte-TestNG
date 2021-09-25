@@ -27,11 +27,12 @@ public class Base {
         }
 
         else if (browserName.equalsIgnoreCase("firefox")){
-            System.setProperty("webdriver.chrome.driver","/Users/harshithakeshav/Downloads/firefoxdriver");
+            System.setProperty("webdriver.firefox.driver","/Users/harshithakeshav/Downloads/firefoxdriver");
             this.driver = new FirefoxDriver();
         }
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(10,TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
         return this.driver;

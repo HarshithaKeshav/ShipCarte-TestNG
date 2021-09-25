@@ -3,17 +3,19 @@ package pragra.shipcarte.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pragra.shipcarte.base.Base;
+import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
 
+
+    WebDriver driver;
     @FindBy(xpath = "//div[@class='mt-3']/span")
     WebElement select_customer;
 
     @FindBy(xpath = "//div[@class='mt-3']/span[2]")
     WebElement select_partner;
 
-    @FindBy(xpath = "//*[@name='username']")
+    @FindBy(xpath = "//input[@name='username']")
     WebElement text_username;
 
     @FindBy(xpath = "//*[@name='password']")
@@ -34,6 +36,16 @@ public class LoginPage {
     @FindBy(xpath = "//button[@type='button']/following-sibling::a")
     WebElement button_forgotPassword;
 
+    @FindBy(xpath = "//div[@class='orange-text']")
+    WebElement invalidError;
+
+    public LoginPage(WebDriver driver)
+
+    {
+        this.driver=driver;
+        PageFactory.initElements(driver,this);
+    }
+
 
 
     public void selectCustomer(){
@@ -45,11 +57,11 @@ public class LoginPage {
     }
 
     public void username(String text){
-        text_username.sendKeys();
+        text_username.sendKeys(text);
     }
 
     public void password(String text){
-        text_password.sendKeys();
+        text_password.sendKeys(text);
     }
 
     public void showPassword(){
@@ -72,5 +84,8 @@ public class LoginPage {
         button_forgotPassword.click();
     }
 
+    public void invalidErrorMessage(){
+        invalidError.getText();
+    }
 
 }

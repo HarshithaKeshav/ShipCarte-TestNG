@@ -17,12 +17,13 @@ public class TestBase extends Base {
     public void setup() throws IOException {
         driver = initializeDriver();
         driver.get("http://shipcarte.pragralms.com:3000/#/signin");
-        loginPage = new LoginPage();
+        loginPage = new LoginPage(driver);
 
     }
 
-    @org.testng.annotations.Test
+    @Test
     public void loginPageTest(){
+
         loginPage.selectCustomer();
         loginPage.username("harshitha.keshav19@gmail.com");
         loginPage.password("Pragra1234$");
@@ -32,8 +33,10 @@ public class TestBase extends Base {
     }
 
     @AfterTest
-    public void tearDown(){
+    public void tearDown() throws InterruptedException {
+        Thread.sleep(5000);
         driver.close();
+
     }
 
 
