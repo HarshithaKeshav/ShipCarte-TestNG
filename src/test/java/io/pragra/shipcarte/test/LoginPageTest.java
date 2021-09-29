@@ -1,17 +1,19 @@
-package pragra.shipcarte;
+package io.pragra.shipcarte.test;
 
+import io.pragra.shipcarte.data.ExcelData;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import pragra.shipcarte.base.Base;
-import pragra.shipcarte.pages.LoginPage;
+import io.pragra.shipcarte.pages.LoginPage;
 
 import java.io.IOException;
 
-public class TestBase extends Base {
+public class LoginPageTest extends Base {
 
 
     LoginPage loginPage;
+    ExcelData excelData = new ExcelData();
 
     @BeforeTest
     public void setup() throws IOException {
@@ -22,7 +24,7 @@ public class TestBase extends Base {
     }
 
     @Test
-    public void loginPageTest(){
+    public void positiveTestCase(){
 
         loginPage.selectCustomer();
         loginPage.username("harshitha.keshav19@gmail.com");
@@ -31,6 +33,17 @@ public class TestBase extends Base {
         loginPage.rememberMe();
         loginPage.continueButton();
     }
+
+    @Test
+    public void negativeTestCase(){
+
+    }
+
+   @DataProvider(name = "Login")
+   public Object[][] getData(){
+
+       return new Object[0][];
+   }
 
     @AfterTest
     public void tearDown() throws InterruptedException {
